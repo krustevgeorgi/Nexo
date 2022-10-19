@@ -1,0 +1,33 @@
+@font-face {
+  font-display: swap;
+  font-family: "TTNorms-Regular";
+  font-style: normal;
+  font-weight: 500;
+  src: local("TTNorms Regular"), url("./assets/fonts/TTNorms-Regular.otf") format("truetype"); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "TTNorms-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: local("TTNorms Bold"), url("./assets/fonts/TTNorms-Bold.otf") format("truetype"); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "TTNorms-Light";
+  font-style: normal;
+  font-weight: 500;
+  src: local("TTNorms Light"), url("./assets/fonts/TTNorms-Light.otf") format("truetype"); /* Safari, Android, iOS */
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: TTNorms-Regular, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !important;
+}
+

@@ -1,0 +1,165 @@
+@import '../../theme/colors.scss';
+
+#dashboard {
+  background-color: $BACKGROUND_DARK;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+}
+
+#dashboard .wrapper {
+  max-width: 1080px;
+  width: 100%;
+  padding-top: 50px;
+
+}
+
+#dashboard .wrapper h3 {
+  color: rgb(154, 185, 255);
+  font-family: TTNorms-Regular;
+  font-size: 25px;
+  margin: 0;
+}
+
+#dashboard .wrapper h2 {
+  color: #fff;
+  font-family: TTNorms-Regular;
+  font-size: 42px;
+  margin: 0;
+}
+
+#panel {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 50px;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .3);
+  flex: 1;
+}
+
+#panel .body {
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  background: url(https://nexo.io/media/pages/dashboard/8c34c0f4f8-1656927139/slider-background-05.jpg);
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+
+#panel .body .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 32px;
+}
+
+#panel .body .menu button {
+  border: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+  border-radius: 100px;
+  padding: 12px 25px 12px 30px;
+  background-color: transparent;
+  color: #383e45;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-family: TTNorms-Bold;
+  min-width: 180px;
+  transition: background-color 1s;
+}
+
+#panel .body .menu button.s {
+  background-color: $BACKGROUND_DARK;
+  color: #fff;
+}
+
+#panel .body .menu button:hover {
+  box-shadow: 0 0 3px 0 rgba(10, 46, 128, 0.5);
+}
+
+#panel .body .menu button:hover svg {
+  display: block;
+}
+
+#panel .body .menu button.active svg {
+  display: block;
+}
+
+#panel .body .menu button svg {
+  font-size: 18px;
+}
+
+#panel .body .content{
+  width: 100%;
+  height: 100%;
+}
+
+#panel .body .content .data{
+  width: 100%;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+  overflow-y: scroll;
+}
+
+#panel .body .content .header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 24px;
+  background-color: $BACKGROUND_LIGHT;
+}
+
+#panel .body .content .header span {
+  font-family: TTNorms-Bold;
+  font-size: 16px;
+}
+
+#panel .body .content .row {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+  background-color: #eef0fb;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  cursor: pointer;
+  transition: margin-right 0.5s;
+}
+
+#panel .body .content .row:hover{
+  margin-right: 32px;
+  border-radius: 24px;
+  background-color: #ced6ff;
+}
+
+#panel .body .content .row .title {
+  font-size: 16px;
+  font-family: TTNorms-Bold;
+  color: $TERTIARY_TEXT_DARK;
+  margin-bottom: 4px;
+}
+
+#panel .body .content .row .value {
+  font-size: 20px;
+  color: $PRIMARY_TEXT_DARK;
+  display: flex;
+  align-items: center;
+}
+
+#panel .green-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: $CALL_TO_ACTION;
+  margin-right: 6px
+}
