@@ -29,7 +29,7 @@ const Dashboard: FC = () => {
 
                 <div id='panel'>
                     <div className='body'>
-                        <div className='menu'>
+                        <div className='side-menu'>
                             <button onClick={() => setSelectedTab(CONNECTION)}
                                     className={selectedTab === CONNECTION ? 's' : ''}>
                                 Connection <ArrowForward/>
@@ -45,7 +45,7 @@ const Dashboard: FC = () => {
                                 Operations <ArrowForward/>
                             </button>
                         </div>
-                        <div className='content'>
+                        <div className='panel-content'>
                             <div className='header'><span>{selectedTab}</span></div>
 
                             <div className='data'>

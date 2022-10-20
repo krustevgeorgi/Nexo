@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
   padding-top: 50px;
 }
 
@@ -18,4 +19,40 @@
 
 #modal .content{
   background-color: $BACKGROUND_LIGHT;
+  z-index: 11;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#modal .content svg{
+  color: $CALL_TO_ACTION;
+  font-size: 40px;
+}
+
+#modal .content .title{
+  font-family: TTNorms-Bold;
+  font-size: 22px;
+  margin-top: 24px;
+  margin-bottom: 6px;
+  color: $SECONDARY_TEXT_DARK;
+}
+
+#modal .content .text{
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: $TERTIARY_TEXT_DARK;
+  margin-bottom: 24px;
+}
+
+#modal .content button{
+  font-size: 18px;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: $BACKGROUND_DARK;
+  color: $PRIMARY_TEXT_LIGHT
 }

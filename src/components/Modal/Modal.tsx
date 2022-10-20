@@ -5,7 +5,7 @@ interface Props {
     title: string;
     text: string | ReactNode;
     icon: ReactNode;
-    onOk: () => void;
+    onOk?: () => void;
     visible: boolean;
 }
 
@@ -19,7 +19,7 @@ const Modal: FC<Props> = ({title, text, icon, onOk, visible}) => {
                 {icon}
                 <span className='title'>{title}</span>
                 <span className='text'>{text}</span>
-                <button onClick={onOk}>Ok</button>
+                {onOk && <button onClick={onOk}>Ok</button>}
             </div>
         </div>
     )

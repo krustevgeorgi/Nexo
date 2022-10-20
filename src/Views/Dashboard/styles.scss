@@ -50,7 +50,7 @@
 }
 
 
-#panel .body .menu {
+#panel .body .side-menu {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -58,7 +58,7 @@
   padding: 32px;
 }
 
-#panel .body .menu button {
+#panel .body .side-menu button {
   border: none;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
   border-radius: 100px;
@@ -76,33 +76,33 @@
   transition: background-color 1s;
 }
 
-#panel .body .menu button.s {
+#panel .body .side-menu button.s {
   background-color: $BACKGROUND_DARK;
   color: #fff;
 }
 
-#panel .body .menu button:hover {
+#panel .body .side-menu button:hover {
   box-shadow: 0 0 3px 0 rgba(10, 46, 128, 0.5);
 }
 
-#panel .body .menu button:hover svg {
+#panel .body .side-menu button:hover svg {
   display: block;
 }
 
-#panel .body .menu button.active svg {
+#panel .body .side-menu button.active svg {
   display: block;
 }
 
-#panel .body .menu button svg {
+#panel .body .side-menu button svg {
   font-size: 18px;
 }
 
-#panel .body .content{
+#panel .body .panel-content{
   width: 100%;
   height: 100%;
 }
 
-#panel .body .content .data{
+#panel .body .panel-content .data{
   width: 100%;
   height: calc(100% - 80px);
   display: flex;
@@ -112,7 +112,7 @@
   overflow-y: scroll;
 }
 
-#panel .body .content .header {
+#panel .body .panel-content .header {
   height: 80px;
   display: flex;
   align-items: center;
@@ -120,7 +120,7 @@
   background-color: $BACKGROUND_LIGHT;
 }
 
-#panel .body .content .header span {
+#panel .body .panel-content .header span {
   font-family: TTNorms-Bold;
   font-size: 16px;
 }

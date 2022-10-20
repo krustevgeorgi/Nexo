@@ -7,6 +7,7 @@ import {ethers} from "ethers";
 import {WETH_ADDRESS} from "../../../constants";
 import WETH from '../../../WETH.json'
 import {CheckCircle, CheckOutlined} from "@material-ui/icons";
+import {ClipLoader} from "react-spinners";
 
 const etherscan = 'https://sepolia.etherscan.io/'
 
@@ -43,14 +44,21 @@ const Operations: FC = () => {
                 />
             }/>
             <DashboardRow title='NEXO Balance' value={ethers.utils.formatEther(connection!.nexoBalance)}/>
+
+            <Modal title='Converting' text='We are processing your transaction, please wait.'
+                   icon={<ClipLoader size='18'/>} visible={swapping} />
+
+
             <Modal
-                visible={true}
+                visible={lastTransaction}
                 icon={<CheckCircle/>}
                 title='Transaction sent'
                 onOk={() => setLastTransaction(null)}
                 text={<>
-                        You can see your transaction in the
-                        <a href={`${etherscan}/tx/`}>block explorer</a>
+                        You can see your transaction in the&nbsp;
+                        <a href={`${etherscan}/tx/${lastTransaction && lastTransaction.transactionHash}`} target='_blank'>
+                            block explorer
+                        </a>
                     </>}
             />
         </div>
