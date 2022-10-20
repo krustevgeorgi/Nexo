@@ -125,41 +125,35 @@
   font-size: 16px;
 }
 
-#panel .body .content .row {
+
+.row-input {
   display: flex;
   flex-direction: column;
-  padding: 24px 32px;
-  background-color: #eef0fb;
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 24px;
-  cursor: pointer;
-  transition: margin-right 0.5s;
+  width: 100%;
 }
 
-#panel .body .content .row:hover{
-  margin-right: 32px;
-  border-radius: 24px;
-  background-color: #ced6ff;
-}
-
-#panel .body .content .row .title {
-  font-size: 16px;
-  font-family: TTNorms-Bold;
-  color: $TERTIARY_TEXT_DARK;
+.row-input input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 22px;
+  margin-top: 12px;
   margin-bottom: 4px;
+  flex: 1;
 }
 
-#panel .body .content .row .value {
-  font-size: 20px;
-  color: $PRIMARY_TEXT_DARK;
-  display: flex;
-  align-items: center;
+.row-input input::-webkit-outer-spin-button,
+.row-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-#panel .green-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: $CALL_TO_ACTION;
-  margin-right: 6px
+.row-input .balance {
+  font-size: 12px;
+  margin: 3px 0;
+  color: $TERTIARY_TEXT_DARK;
+}
+
+.row-input .balance:hover {
+  text-decoration: underline;
 }

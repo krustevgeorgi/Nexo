@@ -1,0 +1,83 @@
+@import '../../theme/colors.scss';
+
+
+.dashboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #eef0fb;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  cursor: pointer;
+  transition: margin-right 0.5s;
+  margin-bottom: 12px;
+}
+
+.dashboard-row.animate:hover{
+  margin-right: 32px;
+  border-radius: 24px;
+  background-color: #ced6ff;
+}
+
+.dashboard-row .title {
+  font-size: 16px;
+  font-family: TTNorms-Bold;
+  color: $TERTIARY_TEXT_DARK;
+  margin-bottom: 4px;
+}
+
+.dashboard-row .value {
+  font-size: 20px;
+  color: $PRIMARY_TEXT_DARK;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-row .copy {
+  font-size: 18px;
+  color: $TERTIARY_TEXT_DARK;
+}
+
+.dashboard-row .goBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  background-color: $BACKGROUND_LIGHT;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  box-shadow: 0 0 3px 0 rgba(10, 46, 128, 0.5);
+}
+
+.dashboard-row .goBtn:hover {
+  background-color: $BACKGROUND_DARK;
+}
+
+.dashboard-row .goBtn:hover svg{
+  color: $PRIMARY_TEXT_LIGHT;
+}
+
+.dashboard-row .goBtn svg{
+  font-size: 22px;
+  color: $BACKGROUND_DARK;
+}
+
+.dashboard-row .goBtn:disabled{
+  background-color: #ddd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.green-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: $CALL_TO_ACTION;
+  margin-right: 6px
+}

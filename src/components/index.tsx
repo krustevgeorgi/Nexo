@@ -1,3 +1,5 @@
-import Connection from "./Connection";
+import ConnectBox from "./ConnectBox";
+import DashboardRow from "./DashboardRow";
+import Modal from "./Modal";
 
-export {Connection}
+export {ConnectBox, DashboardRow, Modal}

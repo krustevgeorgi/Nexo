@@ -3,7 +3,9 @@ import {
     CommonState,
     SET_CONNECTION,
     SET_LOADING,
-    SET_SMALL_SCREEN,
+    SET_PROVIDER,
+    SET_SIGNER,
+    SET_SMALL_SCREEN
 } from "./types";
 import {Reducer} from "redux";
 
@@ -13,6 +15,8 @@ const initialCommonState: CommonState = {
     isLoading: false,
     smallScreen: smallScreenQuery.matches,
     connection: null,
+    provider: null,
+    signer: null
 };
 
 export const commonReducer: Reducer<CommonState, CommonActions> = (state = initialCommonState, action) => {
@@ -23,6 +27,10 @@ export const commonReducer: Reducer<CommonState, CommonActions> = (state = initi
             return {...state, smallScreen: action.smallScreen};
         case SET_CONNECTION:
             return {...state, connection: action.connection};
+        case SET_PROVIDER:
+            return {...state, provider: action.provider};
+        case SET_SIGNER:
+            return {...state, signer: action.signer};
         default:
             neverReached(action);
     }

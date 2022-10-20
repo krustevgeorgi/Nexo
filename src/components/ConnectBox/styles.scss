@@ -1,0 +1,92 @@
+@import '../../theme/colors.scss';
+
+#call-to-action{
+  background-color: $BACKGROUND_LIGHT;
+  border-radius: 12px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, .5);
+  padding: 32px;
+  max-width: 350px;
+}
+
+#call-to-action > svg{
+  font-size: 36px;
+  color: $BACKGROUND_DARK;
+  margin-bottom: 12px;
+}
+
+#call-to-action > svg.check{
+  color: $CALL_TO_ACTION;
+}
+
+#call-to-action p.title{
+  font-size: 20px;
+  font-family: TTNorms-Bold;
+  color: $SECONDARY_TEXT_DARK;
+  margin-top: 0;
+}
+
+#call-to-action p.instructions{
+  padding: 8px 12px;
+  border: 1px dashed #8e2121;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  font-size: 16px;
+  color: $TERTIARY_TEXT_DARK;
+  font-family: TTNorms-Light;
+  line-height: 22px;
+}
+
+#call-to-action .instructions span,
+#call-to-action .instructions a{
+  text-decoration: underline;
+  color: $BACKGROUND_DARK;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#call-to-action .instructions span:hover,
+#call-to-action .instructions a:hover{
+  color: #4f73de;
+}
+
+#call-to-action button{
+  padding: 12px 24px;
+  background-color: $CALL_TO_ACTION;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 24px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+#call-to-action button:hover {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
+  border: 1px solid #00945d;
+}
+
+#call-to-action button svg{
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+#call-to-action button:disabled{
+  background-color: #ccc;
+  color: $SECONDARY_TEXT_DARK
+}
+
+#call-to-action button:disabled:hover{
+  box-shadow: none;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+}
+
+#call-to-action button:disabled svg{
+  color: $SECONDARY_TEXT_DARK;
+}
+
