@@ -1,43 +1,49 @@
 import React, {FC, useState} from "react";
 import '../styles.scss';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../../store";
-import {DashboardRow, Modal} from "../../../components";
-import {BigNumber, ethers} from "ethers";
-import {XRP_ADDRESS, WETH_ADDRESS} from "../../../constants";
+import {DashboardRow, Modal, RowInput} from "../../../components";
+import {ethers} from "ethers";
 import WETH from '../../../WETH.json'
 import {CheckCircle} from "@material-ui/icons";
 import {ClipLoader} from "react-spinners";
-import {SwapParams} from "../../../models";
+import {SwapParams, Wallet} from "../../../models";
 import {generateSwapData} from "../../../services/1inch";
+import {setWallet} from "../../../store/common/actions";
+import tokens from '../../../utils/tokens.js'
 
 const etherscan = 'https://sepolia.etherscan.io/'
 
 const Operations: FC = () => {
-    const {smallScreen, connection, provider, wallet} = useSelector((state: State) => state.common);
+    const {smallScreen, signer, provider, wallet} = useSelector((state: State) => state.common);
     const [ethToWrap, setEthToWrap] = useState<string>('0')
     const [wethToConvert, setWethToConvert] = useState<string>('0')
     const [processing, setProcessing] = useState<boolean>(false)
     const [lastTransaction, setLastTransaction] = useState<any>(null)
+    const dispatch = useDispatch()
 
     const wrapEth = async () => {
         if (ethToWrap === '0' || !ethToWrap) return alert('Please enter amount larger than 0!')
         setProcessing(true)
-        const signer = await provider!.getSigner()
-        const wethContract = new ethers.Contract(WETH_ADDRESS, WETH.abi, signer);
-        try {
-            const transaction = await wethContract.deposit({
-                from: wallet!.address,
-                value: ethers.utils.parseEther(ethToWrap),
-            });
 
-            const res = await transaction.wait();
-            setProcessing(false)
-            setLastTransaction(res)
-        } catch (err) {
-            debugger
-            console.log(err);
-        }
+        const wethContract = new ethers.Contract(tokens.SEPOLIA_WETH.address, WETH.abi, signer!);
+
+        const transaction = await wethContract.deposit({
+            from: wallet!.address,
+            value: ethers.utils.parseEther(ethToWrap),
+            gasLimit: 50000
+        });
+
+        const res = await transaction.wait();
+
+        dispatch(setWallet({
+            ...wallet,
+            wethBalance: await provider!.getBalance(tokens.SEPOLIA_WETH.address),
+            ethBalance: await signer!.getBalance(),
+        } as Wallet))
+
+        setProcessing(false)
+        setLastTransaction(res)
     }
 
     const convert = async () => {
@@ -45,30 +51,28 @@ const Operations: FC = () => {
         setProcessing(true)
 
         const params: SwapParams = {
-            fromTokenAddress: WETH_ADDRESS,
-            toTokenAddress: XRP_ADDRESS,
+            fromTokenAddress: tokens.SEPOLIA_WETH.address,
+            toTokenAddress: tokens.SEPOLIA_UNI.address,
             amount: ethers.utils.parseUnits(wethToConvert, "ether") + '',
             fromAddress: wallet!.address,
             slippage: '1'
         }
 
         const res = await generateSwapData(params);
-        debugger
-        console.log(res)
-
         setProcessing(false)
     }
 
     return (
         <div id='wallet' className={smallScreen ? 'm' : ''}>
             <DashboardRow title='Convert your ETH to WETH' noAnimation onGoClicked={wrapEth} loading={processing} value={
-                <CustomInput value={ethToWrap} onChange={setEthToWrap}
+                <RowInput value={ethToWrap} onChange={setEthToWrap}
                              balance={ethers.utils.formatEther(wallet!.ethBalance)}
                 />
             }/>
-            <DashboardRow title='Convert WETH to XRP' noAnimation onGoClicked={convert} loading={processing} value={
-                <CustomInput value={wethToConvert} onChange={setWethToConvert}
-                             balance={ethers.utils.formatEther(wallet!.wethBalance)}
+
+            <DashboardRow title='Convert WETH to UNI' noAnimation onGoClicked={convert} loading={processing} value={
+                <RowInput value={wethToConvert} balance={ethers.utils.formatEther(wallet!.wethBalance)}
+                          onChange={setWethToConvert}
                 />
             }/>
 
@@ -85,23 +89,6 @@ const Operations: FC = () => {
                            block explorer
                        </a>
                    </>}
-            />
-        </div>
-    )
-}
-
-interface CustomInputProps {
-    onChange: (val: string) => void;
-    value: string;
-    balance?: any;
-}
-
-const CustomInput: FC<CustomInputProps> = ({onChange, value, balance}) => {
-    return (
-        <div className='row-input'>
-            {balance && <span className='balance' onClick={() => onChange(balance)}>Total {balance}</span>}
-            <input placeholder='0.0' value={value} type='number'
-                   onChange={(e) => onChange(e.target.value)}
             />
         </div>
     )

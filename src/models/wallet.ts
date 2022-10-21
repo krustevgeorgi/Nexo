@@ -5,4 +5,5 @@ export interface Wallet {
     ethBalance: BigNumber;
     wethBalance: BigNumber;
     nexoBalance: BigNumber;
+    uniBalance: BigNumber;
 }

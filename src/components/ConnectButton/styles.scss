@@ -1,0 +1,41 @@
+@import '../../theme/colors.scss';
+
+#connect-button{
+  padding: 12px 24px;
+  background-color: $CALL_TO_ACTION;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 24px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+#connect-button:hover {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
+  border: 1px solid #00945d;
+}
+
+#connect-button svg{
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+#connect-button:disabled{
+  background-color: #ccc;
+  color: $SECONDARY_TEXT_DARK
+}
+
+#connect-button:disabled:hover{
+  box-shadow: none;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+}
+
+#connect-button:disabled svg{
+  color: $SECONDARY_TEXT_DARK;
+}

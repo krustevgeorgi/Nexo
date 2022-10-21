@@ -1,10 +1,7 @@
-import React, {FC, ReactNode, useState} from "react";
+import React, {FC} from "react";
 import '../styles.scss';
 import {useSelector} from "react-redux";
 import {State} from "../../../store";
-import {ArrowForward, FileCopy} from "@material-ui/icons";
-import {Navigate} from "react-router-dom";
-import {setConnection} from "../../../store/common/actions";
 import {DashboardRow} from "../../../components";
 
 const Connection: FC = () => {

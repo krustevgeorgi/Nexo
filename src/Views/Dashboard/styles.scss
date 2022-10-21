@@ -126,36 +126,3 @@
   font-family: TTNorms-Bold;
   font-size: 16px;
 }
-
-
-.row-input {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.row-input input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: 22px;
-  margin-top: 6px;
-  margin-bottom: 4px;
-  flex: 1;
-}
-
-.row-input input::-webkit-outer-spin-button,
-.row-input input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.row-input .balance {
-  font-size: 12px;
-  margin: 3px 0;
-  color: $TERTIARY_TEXT_DARK;
-}
-
-.row-input .balance:hover {
-  text-decoration: underline;
-}

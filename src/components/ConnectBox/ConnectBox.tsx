@@ -1,25 +1,19 @@
 import React, {FC, useState} from "react";
 import './styles.scss';
-import {ChevronRight, Info, CheckCircle} from "@material-ui/icons";
+import {Info, CheckCircle} from "@material-ui/icons";
+import {ConnectButton} from '../'
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../store";
 import {setConnection, setProvider, setSigner, setWallet} from "../../store/common/actions";
-import {ClipLoader} from 'react-spinners'
 import {useNavigate} from "react-router-dom";
-import {ethers, BigNumber} from "ethers";
+import {ethers} from "ethers";
 import {Connection as ConnectionType, Wallet} from '../../models'
-import {WETH_ADDRESS, XRP_ADDRESS} from "../../constants";
+import tokens from '../../utils/tokens.js'
 
 const MetaMaskLink = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en';
 
-
-
-interface Props {
-
-}
-
-const ConnectBox: FC<Props> = () => {
-    const {connection, wallet} = useSelector((state: State) => state.common)
+const ConnectBox: FC = () => {
+    const {connection} = useSelector((state: State) => state.common)
     const [connecting, setConnecting] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -32,7 +26,6 @@ const ConnectBox: FC<Props> = () => {
         const signer = await provider.getSigner()
 
         const network = await provider.getNetwork();
-
         const connection: ConnectionType = {
             network: network.name,
             chainId: network.chainId,
@@ -41,11 +34,10 @@ const ConnectBox: FC<Props> = () => {
         const wallet: Wallet = {
             address: await signer.getAddress(),
             ethBalance: await signer.getBalance(),
-            wethBalance: await provider.getBalance(WETH_ADDRESS),
-            nexoBalance: await provider.getBalance(XRP_ADDRESS),
+            wethBalance: await provider.getBalance(tokens.SEPOLIA_WETH.address),
+            nexoBalance: await provider.getBalance(tokens.SEPOLIA_NEXO.address),
+            uniBalance: await provider.getBalance(tokens.SEPOLIA_UNI.address),
         }
-
-        console.log(typeof provider)
 
         dispatch(setConnection(connection))
         dispatch(setWallet(wallet))
@@ -53,7 +45,6 @@ const ConnectBox: FC<Props> = () => {
         dispatch(setSigner(signer))
 
         setConnecting(false)
-
     }
 
     return (
@@ -85,26 +76,6 @@ const ConnectBox: FC<Props> = () => {
             <ConnectButton visible={!connection && window.ethereum} connecting={connecting}
                            onClick={connectAccount}/>
         </div>
-    )
-}
-
-interface ConnectButtonProps {
-    visible: boolean;
-    connecting: boolean;
-    onClick: () => void;
-}
-
-const ConnectButton: FC<ConnectButtonProps> = ({visible, connecting, onClick}) => {
-    if (!visible) return null;
-
-    return (
-        <button disabled={connecting} onClick={onClick}>
-            {
-                connecting
-                    ? <>Connecting &nbsp;<ClipLoader size={12}/></>
-                    : <>Connect <ChevronRight/></>
-            }
-        </button>
     )
 }
 

@@ -4,11 +4,11 @@ import {useSelector} from "react-redux";
 import {State} from "../../../store";
 import {DashboardRow} from "../../../components";
 import {ethers} from "ethers";
-import {getWethPrice} from "../../../RouterService.js";
+import {getWethPrice} from "../../../utils";
 
 // import
 const Wallet: FC = () => {
-    const {smallScreen, connection, wallet} = useSelector((state: State) => state.common);
+    const {smallScreen, wallet} = useSelector((state: State) => state.common);
     const [wethPrice, setWethPrice] = useState(0)
 
     useEffect(() => {
@@ -27,8 +27,7 @@ const Wallet: FC = () => {
             <DashboardRow title='WETH Balance' value={ethers.utils.formatEther(wallet!.wethBalance)}/>
             <DashboardRow title='WETH/USDC Price' value={wethPrice}/>
             <DashboardRow title='NEXO Balance' value={ethers.utils.formatEther(wallet!.nexoBalance)}/>
-            {/*<WrapRow title='Address' value={connection?.address}/>*/}
-
+            <DashboardRow title='UNI Balance' value={ethers.utils.formatEther(wallet!.uniBalance)}/>
         </div>
     )
 }
