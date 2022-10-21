@@ -1,6 +1,6 @@
-import express from 'express';
-import path from 'path';
-import compression from 'compression';
+const path = require('path');
+const compression = require('compression');
+const express = require('express');
 const app = express();
 const publicPath = path.join(__dirname, 'build');
 const port = process.env.PORT || 3000;
