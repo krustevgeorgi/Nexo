@@ -38,7 +38,7 @@ const ConnectBox: FC = () => {
             nexoBalance: await provider.getBalance(tokens.SEPOLIA_NEXO.address),
             uniBalance: await provider.getBalance(tokens.SEPOLIA_UNI.address),
         }
-
+debugger
         dispatch(setConnection(connection))
         dispatch(setWallet(wallet))
         dispatch(setProvider(provider))

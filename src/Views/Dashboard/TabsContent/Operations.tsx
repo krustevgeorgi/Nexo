@@ -30,8 +30,7 @@ const Operations: FC = () => {
 
         const transaction = await wethContract.deposit({
             from: wallet!.address,
-            value: ethers.utils.parseEther(ethToWrap),
-            gasLimit: 50000
+            value: ethers.utils.parseEther(ethToWrap)
         });
 
         const res = await transaction.wait();

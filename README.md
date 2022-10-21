@@ -1,12 +1,22 @@
 # Getting Started
-
 The project is configured to run with the Sepolia test network. 
 
-To use on Main Net simply change the WETH and NEXO contract addresses in src/constants to:
+To test add MetaMask extension to your browser and use the following credentials to log in:
 
-WETH: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-NEXO: 0xB62132e35a6c13ee1EE0f84dC5d40bad8d815206
-
+Password: Nex0L4bs
+Secret phrase:
+1. innocent 
+2. message 
+3. switch 
+4. phone 
+5. napkin 
+6. boring 
+7. decade 
+8. repair 
+9. boring 
+10. series 
+11. dragon 
+12. either
 
 ## Available Scripts
 
