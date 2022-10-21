@@ -25,7 +25,7 @@ const DashboardRow: FC<Props> = ({title, value, noAnimation, onGoClicked, loadin
 
     return (
         <div className={`dashboard-row ${noAnimation ? '' : 'animate'}`} onClick={copyValue}>
-            <div>
+            <div style={{flex: 1}}>
                 <span className='title'>{title}</span>
                 <span className='value'>{value}</span>
             </div>

@@ -1,31 +1,24 @@
 import {
     SET_CONNECTION,
-    SET_LOADING,
     SET_PROVIDER,
     SET_SIGNER,
-    SET_SMALL_SCREEN,
+    SET_WALLET,
     SetConnectionAction,
-    SetLoadingAction,
     SetProviderAction,
     SetSignerAction,
-    SetSmallScreenAction
+    SetWalletAction
 } from "./types";
-import {Connection} from "../../models";
+import {Connection, Wallet} from "../../models";
 import {JsonRpcProvider, JsonRpcSigner} from "@ethersproject/providers/src.ts/json-rpc-provider";
-
-export const setLoading = (isLoading: boolean): SetLoadingAction => ({
-    type: SET_LOADING,
-    isLoading
-});
-
-export const setSmallScreen = (smallScreen: boolean): SetSmallScreenAction => ({
-    type: SET_SMALL_SCREEN,
-    smallScreen
-});
 
 export const setConnection = (connection: Connection): SetConnectionAction => ({
     type: SET_CONNECTION,
     connection
+});
+
+export const setWallet = (wallet: Wallet | null): SetWalletAction => ({
+    type: SET_WALLET,
+    wallet
 });
 
 export const setProvider = (provider: JsonRpcProvider): SetProviderAction => ({
