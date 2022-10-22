@@ -57,6 +57,10 @@
 }
 
 @media screen and (max-width: 992px) {
+  #home #hero {
+    padding-bottom: 24px;
+  }
+  
   #connect-section{
     margin-right: 0;
     flex: 1;
