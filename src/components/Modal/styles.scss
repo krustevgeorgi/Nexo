@@ -56,3 +56,9 @@
   background-color: $BACKGROUND_DARK;
   color: $PRIMARY_TEXT_LIGHT
 }
+
+@media screen and (max-width: 992px) {
+  #modal {
+    padding: 50px 24px;
+  }
+}

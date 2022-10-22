@@ -16,21 +16,21 @@ const DashboardRow: FC<Props> = ({title, value, noAnimation, onGoClicked, loadin
     const [copied, setCopied] = useState(false)
 
     const copyValue = () => {
-        if (typeof value !== 'string') return;
+        if (typeof value === 'object') return;
 
-        navigator.clipboard.writeText(value);
+        navigator.clipboard.writeText(value as string);
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
     }
 
     return (
         <div className={`dashboard-row ${noAnimation ? '' : 'animate'}`} onClick={copyValue}>
-            <div style={{flex: 1}}>
+            <div style={{flex: 1, maxWidth: '90%', overflow: 'hidden'}}>
                 <span className='title'>{title}</span>
                 <span className='value'>{value}</span>
             </div>
             {
-                (typeof value === 'string' && !onGoClicked)
+                (typeof value !== 'object' && !onGoClicked)
                 && <>{copied ? <span>Copied!</span> : <FileCopy className='copy'/>}</>
             }
             {

@@ -1,19 +1,13 @@
 import React, {FC} from "react";
 import "./styles.scss";
-import HeaderD from './Header/HeaderD';
-import HeaderM from './Header/HeaderM';
+import Header from './Header';
 import Body from './Body';
-import {useSelector} from "react-redux";
-import {State} from "../store";
 
 const Layout: FC = () => {
-    const {smallScreen} = useSelector((state: State) => state.common)
-
     return (
-        <div id='layout' className={`${smallScreen ? 'm' : ''}`}>
-            {smallScreen ? <HeaderM/> : <HeaderD/>}
+        <div id='layout'>
+            <Header/>
             <Body/>
-            {/*<Footer/>*/}
         </div>
     )
 }

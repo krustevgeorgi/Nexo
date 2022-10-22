@@ -1,18 +1,3 @@
 #layout {
     width: 100%;
 }
-
-// MOBILE
-
-#layout.m {
-    max-width: none;
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-}
-
-#layout.m img.hero{
-    //width: 200px;
-    height: 500px;
-    right: -150px;
-}

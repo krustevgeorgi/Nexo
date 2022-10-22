@@ -1,0 +1,57 @@
+@import '../../theme/colors.scss';
+
+#dashboard-header {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top-right-radius: 24px;
+  background-color: $BACKGROUND_LIGHT;
+}
+
+#dashboard-header .title {
+  font-family: TTNorms-Bold;
+  font-size: 16px;
+}
+
+#dashboard-header .additional {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  background-color: #eee;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  margin-left: 16px;
+  font-family: TTNorms-Bold;
+  color: $SECONDARY_TEXT_DARK;
+  cursor: pointer;
+}
+
+#dashboard-header .additional:hover {
+  text-decoration: underline;
+}
+
+#dashboard-header .additional svg{
+  color: $TERTIARY_TEXT_DARK;
+  font-size: 12px;
+  margin-left: 12px;
+}
+
+@media screen and (max-width: 992px) {
+  #dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #dashboard-header .additional{
+    margin-left: 0;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}

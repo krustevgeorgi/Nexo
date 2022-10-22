@@ -1,14 +1,10 @@
 import React, {FC} from "react";
 import './styles.scss';
-import {useSelector} from "react-redux";
-import {State} from "../../store";
 import {ConnectBox} from '../../components'
 
 const Home: FC = () => {
-    const {smallScreen} = useSelector((state: State) => state.common)
-
     return (
-        <div id='home' className={smallScreen ? 'm' : ''}>
+        <div id='home'>
             <div id='hero'>
                 <div id='connect-section'>
                     <div className='left'>

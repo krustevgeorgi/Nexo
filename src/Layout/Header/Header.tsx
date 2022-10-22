@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {State} from "../../store";
 import {useNavigate} from "react-router-dom";
 
-const HeaderD:FC = () => {
+const Header:FC = () => {
     const {connection} = useSelector((state: State) => state.common)
     const navigate = useNavigate()
 
@@ -25,4 +25,4 @@ const HeaderD:FC = () => {
     )
 }
 
-export default HeaderD;
+export default Header;

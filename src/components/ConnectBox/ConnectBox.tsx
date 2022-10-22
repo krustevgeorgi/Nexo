@@ -1,50 +1,63 @@
 import React, {FC, useState} from "react";
 import './styles.scss';
-import {Info, CheckCircle} from "@material-ui/icons";
-import {ConnectButton} from '../'
+import {Info, CheckCircle, ChevronRight, LinkOff} from "@material-ui/icons";
+import {AppButton} from '../'
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../store";
 import {setConnection, setProvider, setSigner, setWallet} from "../../store/common/actions";
 import {useNavigate} from "react-router-dom";
 import {ethers} from "ethers";
 import {Connection as ConnectionType, Wallet} from '../../models'
-import tokens from '../../utils/tokens.js'
+import tokens from '../../utils/tokens'
+import {ClipLoader} from "react-spinners";
 
 const MetaMaskLink = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en';
 
 const ConnectBox: FC = () => {
     const {connection} = useSelector((state: State) => state.common)
-    const [connecting, setConnecting] = useState(false)
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const connectAccount = async () => {
-        setConnecting(true)
+        setLoading(true)
 
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         await provider.send('eth_requestAccounts', [])
         const signer = await provider.getSigner()
 
         const network = await provider.getNetwork();
+
         const connection: ConnectionType = {
             network: network.name,
             chainId: network.chainId,
         }
 
+        const {WETH, UNI, NEXO} = tokens[connection.chainId]
+
         const wallet: Wallet = {
             address: await signer.getAddress(),
             ethBalance: await signer.getBalance(),
-            wethBalance: await provider.getBalance(tokens.SEPOLIA_WETH.address),
-            nexoBalance: await provider.getBalance(tokens.SEPOLIA_NEXO.address),
-            uniBalance: await provider.getBalance(tokens.SEPOLIA_UNI.address),
+            wethBalance: await provider.getBalance(WETH.address),
+            nexoBalance: await provider.getBalance(NEXO.address),
+            uniBalance: await provider.getBalance(UNI.address),
         }
-debugger
+
         dispatch(setConnection(connection))
         dispatch(setWallet(wallet))
         dispatch(setProvider(provider))
         dispatch(setSigner(signer))
 
-        setConnecting(false)
+        setLoading(false)
+    }
+
+    const disconnectAccount = () => {
+        setLoading(true)
+        dispatch(setConnection(null))
+        dispatch(setWallet(null))
+        dispatch(setProvider(null))
+        dispatch(setSigner(null))
+        setLoading(false)
     }
 
     return (
@@ -73,8 +86,13 @@ debugger
             </p>
 
             {/* call to action*/}
-            <ConnectButton visible={!connection && window.ethereum} connecting={connecting}
-                           onClick={connectAccount}/>
+            <AppButton visible={!connection && window.ethereum} loading={loading} onClick={connectAccount}>
+                {loading ? <>Connecting &nbsp;<ClipLoader size={12}/></> : <>Connect &nbsp;<ChevronRight/></>}
+            </AppButton>
+
+            <AppButton visible={!!connection} loading={loading} onClick={disconnectAccount} style={{backgroundColor: '#d34242'}}>
+                {loading ? <>Disconnecting &nbsp;<ClipLoader size={12}/></> : <>Disconnect  &nbsp;<LinkOff/></>}
+            </AppButton>
         </div>
     )
 }

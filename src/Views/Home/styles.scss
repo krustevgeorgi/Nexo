@@ -19,16 +19,6 @@
   justify-content: center;
 }
 
-// MOBILE
-#home.m .contentWrapper{
-  max-width: none;
-  margin-left: 0;
-  margin-top: 0;
-  padding: 12px;
-  width: auto;
-  justify-content: flex-start;
-}
-
 #connect-section{
   display: flex;
   flex-direction: row;
@@ -64,4 +54,25 @@
 
 #connect-section .right img{
   max-width: 700px;
+}
+
+@media screen and (max-width: 992px) {
+  #connect-section{
+    margin-right: 0;
+    flex: 1;
+    align-self: center;
+    padding: 0 24px;
+  }
+
+  #connect-section .left{
+    margin-right: 0;
+  }
+
+  #connect-section .left  h1{
+    max-width: none;
+  }
+
+  #connect-section .right{
+    display: none;
+  }
 }

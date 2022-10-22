@@ -4,7 +4,7 @@ import './styles.scss';
 interface Props {
     title: string;
     text: string | ReactNode;
-    icon: ReactNode;
+    icon?: ReactNode;
     onOk?: () => void;
     visible: boolean;
 }
