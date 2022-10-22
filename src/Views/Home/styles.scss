@@ -60,7 +60,7 @@
   #connect-section{
     margin-right: 0;
     flex: 1;
-    align-self: center;
+    align-self: flex-start;
     padding: 0 24px;
   }
 
@@ -70,6 +70,19 @@
 
   #connect-section .left  h1{
     max-width: none;
+    font-size: 50px;
+  }
+
+  #connect-section .left  h1{
+    max-width: none;
+    font-size: 65px;
+    line-height: 70px;
+  }
+
+  #connect-section .left  h2{
+    max-width: none;
+    font-size: 30px;
+    line-height: 35px;
   }
 
   #connect-section .right{

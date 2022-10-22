@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
 import './styles.scss';
-import {Info, CheckCircle, ChevronRight, LinkOff} from "@material-ui/icons";
-import {AppButton} from '../'
+import {Info, CheckCircle, ChevronRight, LinkOff, ErrorSharp} from "@material-ui/icons";
+import {AppButton, Modal} from '../'
 import {useDispatch, useSelector} from "react-redux";
 import {State} from "../../store";
 import {setConnection, setProvider, setSigner, setWallet} from "../../store/common/actions";
@@ -16,6 +16,7 @@ const MetaMaskLink = 'https://chrome.google.com/webstore/detail/metamask/nkbihfb
 const ConnectBox: FC = () => {
     const {connection} = useSelector((state: State) => state.common)
     const [loading, setLoading] = useState(false)
+    const [invalidNetwork, setInvalidNetwork] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -27,6 +28,12 @@ const ConnectBox: FC = () => {
         const signer = await provider.getSigner()
 
         const network = await provider.getNetwork();
+
+        if(network.chainId !== 1 && network.chainId !== 11155111) {
+            setInvalidNetwork(true)
+            setLoading(false)
+            return
+        }
 
         const connection: ConnectionType = {
             network: network.name,
@@ -93,6 +100,9 @@ const ConnectBox: FC = () => {
             <AppButton visible={!!connection} loading={loading} onClick={disconnectAccount} style={{backgroundColor: '#d34242'}}>
                 {loading ? <>Disconnecting &nbsp;<ClipLoader size={12}/></> : <>Disconnect  &nbsp;<LinkOff/></>}
             </AppButton>
+
+            <Modal title='Invalid Network' text='Our app has been configured to work only with Ehtereum Mainnet and the Sepolia test network. To continue please switch to either network and try again.'
+                   icon={<ErrorSharp style={{color: '#f6b149'}}/>} visible={invalidNetwork} onOk={() => setInvalidNetwork(false)}/>
         </div>
     )
 }
